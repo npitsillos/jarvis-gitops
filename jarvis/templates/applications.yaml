@@ -13,7 +13,7 @@ spec:
     server: {{ $config.spec.destination.server }}
   project: {{ .project }}
   source:
-    {{- if tool.helm -}}
+    {{- if .tool.helm -}}
         chart: ingress-nginx
     {{- else -}}
         path: {{ .path | default .name | quote }}
