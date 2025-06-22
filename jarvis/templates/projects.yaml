@@ -12,8 +12,8 @@ spec:
   sourceRepos:
   - {{ $config.spec.source.repoURL }}
   destinations:
-    namespace: '*'
-    server: {{ $config.spec.destination.server | quote }}
+    - namespace: '*'
+      server: {{ $config.spec.destination.server | quote }}
   clusterResourceWhitelist:
   - group: ''
     kind: Namespace
