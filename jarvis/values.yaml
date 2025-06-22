@@ -17,6 +17,7 @@ applications:
     repoURL: https://kubernetes.github.io/ingress-nginx
     tool:
       helm:
+        releaseName: ingress-nginx
         valuesObject:
           controller:
             hostPort:
