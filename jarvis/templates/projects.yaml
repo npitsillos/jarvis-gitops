@@ -12,8 +12,8 @@ spec:
   sourceRepos:
   - {{ $config.spec.source.repoURL }}
   {{- if $config.spec.source.additionalRepos }}
-  {{- with $config.spec.source.additionalRepos }}
-  {{- . | toYaml | nindent 4 }}
+  {{- range $repo := $config.spec.source.additionalRepos }}
+  - {{- $repo }}
   {{- end }}
   {{- end }}
   destinations:
