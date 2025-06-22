@@ -11,11 +11,11 @@ spec:
   description: {{ .description }}
   sourceRepos:
   - {{ $config.spec.source.repoURL }}
-    {{- if $config.spec.source.additionalRepos }}
-    {{- range $config.spec.source.additionalRepos }}
-    - {{- . }}
-    {{- end }}
-    {{- end }}
+  {{- if $config.spec.source.additionalRepos }}
+  {{- range $config.spec.source.additionalRepos }}
+  - {{ . }}
+  {{- end }}
+  {{- end }}
   destinations:
     - namespace: '*'
       server: {{ $config.spec.destination.server | quote }}

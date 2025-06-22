@@ -18,9 +18,9 @@ applications:
     tool:
       helm:
         valuesObject:
-        controller:
-          hostPort:
-            enabled: true
+          controller:
+            hostPort:
+              enabled: true
 
 projects:
   - name: jarvis-networking
