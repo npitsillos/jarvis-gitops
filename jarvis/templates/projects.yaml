@@ -11,6 +11,11 @@ spec:
   description: {{ .description }}
   sourceRepos:
   - {{ $config.spec.source.repoURL }}
+  {{- if $config.spec.source.additionalRepos }}
+  {{- with $config.spec.source.additionalRepos }}
+  {{- . | toYaml | nindent 4 }}
+  {{- end }}
+  {{- end }}
   destinations:
     - namespace: '*'
       server: {{ $config.spec.destination.server | quote }}
