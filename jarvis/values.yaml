@@ -1,0 +1,24 @@
+config:
+  spec:
+    destination:
+      server: https://kubernetes.default.svc
+    source:
+      repoURL: https://github.com/npitsillos/jarvis-gitops
+      targetRevision: master
+
+applications:
+  - name: ingress-test
+    namespace: default
+    project: jarvis-networking
+    targetRevision: 4.12.3
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    tool:
+      helm:
+        valuesObject:
+        controller:
+          hostPort:
+            enabled: true
+
+projects:
+  - name: jarvis-networking
+    description: Networking infra
