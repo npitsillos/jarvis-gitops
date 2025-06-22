@@ -3,21 +3,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .name }}
+  name: {{ .name | quote }}
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: {{ .namespace | default .name }}
-    server: {{ $config.spec.destination.server }}
+    namespace: {{ .namespace | default .name | quote }}
+    server: {{ $config.spec.destination.server | quote }}
   project: {{ .project }}
   source:
-    {{- if .tool.helm -}}
-        chart: ingress-nginx
-    {{- else -}}
-        path: {{ .path | default .name | quote }}
-    {{- end -}}
+  {{- if .tool.helm }}
+    chart: {{ .chart }}
+  {{- else }}
+    path: {{ .path | default .name | quote }}
+  {{- end }}
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
     {{- with .tool }}

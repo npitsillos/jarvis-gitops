@@ -10,6 +10,7 @@ applications:
   - name: ingress-test
     namespace: default
     project: jarvis-networking
+    chart: ingress-nginx
     targetRevision: 4.12.3
     repoURL: https://kubernetes.github.io/ingress-nginx
     tool:
