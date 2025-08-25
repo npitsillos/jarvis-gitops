@@ -4,8 +4,6 @@ config:
       server: https://kubernetes.default.svc
     source:
       repoURL: https://github.com/npitsillos/jarvis-gitops
-      additionalRepos:
-        - https://kubernetes.github.io/ingress-nginx
       targetRevision: master
 
 applications:
