@@ -8,3 +8,4 @@ resources:
 
 patches:
   - path: overlays/argo-cd-cm.yaml
+  - path: overlays/argocd-repo-server-patch.yaml
