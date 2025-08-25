@@ -12,3 +12,4 @@ applications:
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: argocd
+    project: default
