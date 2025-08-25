@@ -13,16 +13,15 @@ spec:
     server: {{ $config.spec.destination.server | quote }}
   project: {{ .project }}
   source:
-  {{- if .tool.helm }}
-    chart: {{ .chart }}
+  {{- if .tool }}
+    {{- with .tool }}
+    {{- . | toYaml | nindent 4 }}
+    {{- end }}
   {{- else }}
     path: {{ .path | default .name | quote }}
   {{- end }}
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
-    {{- with .tool }}
-    {{- . | toYaml | nindent 4 }}
-    {{- end }}
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
