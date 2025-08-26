@@ -33,6 +33,11 @@ spec:
           env:
             - name: GNUPGHOME
               value: /gnupg-home/.gnupg
+            - name: GPG_PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: sops-gpg
+                  key: passphrase
           volumeMounts:
             - mountPath: /sops-gpg
               name: sops-gpg
