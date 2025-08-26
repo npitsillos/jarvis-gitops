@@ -20,6 +20,12 @@ spec:
   {{- else }}
     path: {{ .path | default .name | quote }}
   {{- end }}
+    {{- if .plugin }}
+    plugin:
+      {{- with .plugin }}
+      {{- . | toYaml | nindent 6 }}
+      {{- end }}
+    {{- end }}
   {{- if .chart }}
     chart: {{ .chart }}
   {{- end }}

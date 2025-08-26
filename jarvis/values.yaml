@@ -19,6 +19,8 @@ applications:
     targetRevision: 2.17.4
     chart: sealed-secrets
     project: default
+    plugin:
+      name: ksops
     tool:
       helm:
         releaseName: sealed-secrets
