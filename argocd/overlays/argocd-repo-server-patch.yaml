@@ -29,15 +29,10 @@ spec:
               name: custom-tools
         - name: import-gpg-key
           image: quay.io/argoproj/argocd:latest
-          command: ["gpg", "--import", "/sops-gpg/sops.asc"]
+          command: ["gpg", "--batch", "--import", "/sops-gpg/sops.asc"]
           env:
             - name: GNUPGHOME
               value: /gnupg-home/.gnupg
-            - name: GPG_PASSPHRASE
-              valueFrom:
-                secretKeyRef:
-                  name: sops-gpg
-                  key: passphrase
           volumeMounts:
             - mountPath: /sops-gpg
               name: sops-gpg
