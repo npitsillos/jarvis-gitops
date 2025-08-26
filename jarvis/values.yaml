@@ -16,7 +16,7 @@ applications:
   - name: bitnami-sealed-secrets
     namespace: kube-system
     repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: HEAD
+    targetRevision: latest
     chart: sealed-secrets
     project: default
     tool:
