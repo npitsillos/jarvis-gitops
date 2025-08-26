@@ -20,6 +20,9 @@ spec:
   {{- else }}
     path: {{ .path | default .name | quote }}
   {{- end }}
+  {{- if .chart }}
+    chart: {{ .chart }}
+  {{- end }}
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
   {{- if .extraResources }}
