@@ -28,7 +28,7 @@ spec:
             - mountPath: /custom-tools
               name: custom-tools
         - name: import-gpg-key
-          image: busybox
+          image: quay.io/argoproj/argocd:latest
           command: ["gpg", "--import", "/sops-gpg/sops.asc"]
           env:
             - name: GNUPGHOME
