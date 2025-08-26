@@ -22,4 +22,4 @@ applications:
     tool:
       helm:
         releaseName: sealed-secrets
-    extraResources: bitnami-sealed-secrets
+    # extraResources: bitnami-sealed-secrets
