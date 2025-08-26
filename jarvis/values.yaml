@@ -13,3 +13,13 @@ applications:
     targetRevision: HEAD
     path: argocd
     project: default
+  - name: bitnami-sealed-secrets
+    namespace: kube-system
+    repoURL: https://bitnami-labs.github.io/sealed-secrets
+    targetRevision: HEAD
+    chart: sealed-secrets
+    project: default
+    tool:
+      helm:
+        releaseName: sealed-secrets
+    extraResources: bitnami-sealed-secrets

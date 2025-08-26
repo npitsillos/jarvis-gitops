@@ -22,6 +22,12 @@ spec:
   {{- end }}
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
+  {{- if .extraResources }}
+  sources:
+    - repoURL: {{ .repoURL }}
+      targetRevision: {{ .targetRevision }}
+      path: {{ .extraResources }}
+  {{- end }}
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
