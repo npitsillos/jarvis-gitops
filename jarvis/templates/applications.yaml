@@ -25,7 +25,7 @@ spec:
   {{- if .extraResources }}
   sources:
     - repoURL: {{ $config.spec.source.repoURL }}
-      targetRevision: {{ .targetRevision }}
+      targetRevision: {{ $config.spec.source.targetRevision  }}
       path: {{ .extraResources }}
   {{- end }}
   syncPolicy:
