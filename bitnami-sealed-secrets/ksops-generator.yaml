@@ -2,5 +2,10 @@ apiVersion: viaduct.ai/v1
 kind: ksops
 metadata:
   name: sealed-secrets-key
+  annotations:
+    config.kubernetes.io/function: |
+        exec:
+          # if the binary is in your PATH, you can do
+          path: ksops
 files:
-  - sealed-secrets-key.yaml
+  - ./sealed-secrets-key.yaml
