@@ -45,12 +45,15 @@ spec:
             - name: GNUPGHOME
               value: /home/argocd/.gnupg
             - name: XDG_CONFIG_HOME
-              value: /.config
+              value: /home/argocd/.config
           volumeMounts:
             - mountPath: /usr/local/bin/kustomize
               name: custom-tools
               subPath: kustomize
-            - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
+            - mountPath: /usr/local/bin/ksops
+              name: custom-tools
+              subPath: ksops
+            - mountPath: /home/argocd/.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
               name: custom-tools
               subPath: ksops
             - mountPath: /home/argocd/.gnupg
