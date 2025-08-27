@@ -8,5 +8,5 @@ helmCharts:
     releaseName: sealed-secrets
     namespace: kube-system
 
-resources:
-  - sealed-secrets-key.yaml
+generators:
+  - ksops-generator.yaml
