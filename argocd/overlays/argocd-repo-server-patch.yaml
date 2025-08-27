@@ -44,7 +44,7 @@ spec:
           env:
             - name: GNUPGHOME
               value: /home/argocd/.gnupg
-            - name: XDG_CONFIG_HOMEs
+            - name: XDG_CONFIG_HOME
               value: /home/argocd/.config
           volumeMounts:
             - mountPath: /home/argocd/.gnupg
