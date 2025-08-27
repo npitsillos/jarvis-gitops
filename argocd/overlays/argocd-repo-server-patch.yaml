@@ -9,8 +9,6 @@ spec:
       volumes:
         - name: custom-tools
           emptyDir: {}
-        - name: gnupg-home
-          emptyDir: {}
         - name: sops-gpg
           secret:
             secretName: sops-gpg
@@ -32,12 +30,10 @@ spec:
           command: ["gpg", "--batch", "--import", "/sops-gpg/sops.asc"]
           env:
             - name: GNUPGHOME
-              value: /gnupg-home/.gnupg
+              value: /home/argocd/.gnupg
           volumeMounts:
             - mountPath: /sops-gpg
               name: sops-gpg
-            - mountPath: /gnupg-home
-              name: gnupg-home
       # 3. Volume mount the custom binary to the bin directory (overriding the existing version)
       containers:
         - name: argocd-repo-server
