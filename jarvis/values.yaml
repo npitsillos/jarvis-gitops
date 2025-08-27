@@ -15,7 +15,7 @@ applications:
     project: default
   - name: bitnami-sealed-secrets
     namespace: kube-system
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
+    repoURL: https://github.com/npitsillos/jarvis-gitops
     path: bitnami-sealed-secrets
     project: default
     targetRevision: HEAD
