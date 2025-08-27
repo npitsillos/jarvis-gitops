@@ -30,7 +30,7 @@ spec:
           command: ["gpg", "--batch", "--import", "/sops-gpg/sops.asc"]
           env:
             - name: GNUPGHOME
-              value: /app/config/gpg/keys/
+              value: /home/argocd/.gnupg
           volumeMounts:
             - mountPath: /sops-gpg
               name: sops-gpg
