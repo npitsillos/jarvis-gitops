@@ -16,12 +16,6 @@ applications:
   - name: bitnami-sealed-secrets
     namespace: kube-system
     repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: 2.17.4
-    chart: sealed-secrets
+    path: bitnami-sealed-secrets
     project: default
-    plugin:
-      name: ksops
-    tool:
-      helm:
-        releaseName: sealed-secrets
-    extraResources: bitnami-sealed-secrets
+    targetRevision: HEAD
