@@ -22,7 +22,7 @@ applications:
   - name: nfd
     namespace: nfd
     repoURL: https://kubernetes-sigs.github.io/node-feature-discovery/charts
-    chart: nfd
+    chart: node-feature-discovery
     project: default
     targetRevision: 0.17.3
     tool:
