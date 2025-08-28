@@ -19,3 +19,10 @@ applications:
     path: bitnami-sealed-secrets
     project: default
     targetRevision: HEAD
+  - name: nfd
+    namespace: nfd
+    repoURL: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+    chart: nfd
+    tool:
+      helm:
+        releaseName: nfd
