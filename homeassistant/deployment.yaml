@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: homeassistant
+  name: homeassistant
+  namespace: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      nodeSelector:
+        feature.node.kubernetes.io/usb-ff_10c4_ea60.present: "true"
+      containers:
+        - env:
+            - name: DISABLE_JEMALLOC
+              value: "1"
+          securityContext:
+            privileged: true
+          image: homeassistant/home-assistant
+          imagePullPolicy: IfNotPresent
+          name: homeassistant
+          ports:
+            - containerPort: 8123
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: homeassistant-pv-config
+            - mountPath: /dev/ttyUSB0
+              name: zigbee-dongle
+            - mountPath: "/home/cert"
+              name: homeassistant-tls
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: homeassistant-pv-config
+          persistentVolumeClaim:
+            claimName: homeassistant-config-pvc
+        - name: zigbee-dongle
+          hostPath:
+            path: /dev/ttyUSB0
+        - name: homeassistant-tls
+          secret:
+            secretName: homeassistant-tls

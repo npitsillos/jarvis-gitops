@@ -1,0 +1,16 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: vscode-password
+  namespace: homeassistant
+spec:
+  encryptedData:
+    password: AgAcqiwyB7JdPtcOsQLiVoYj2f2QDy5C/UZONp8llFF1I3cWCCdk3KtZNoxkx1+Sbp/fNTX5dpa1g/bEq+M+Wv7id8seKLdwoOK96i+rPCyLAonABjCyXgJIx8yzOdPzCp2AcN+UfY0wew+q2RIRGrzKRvsxnlZjzyUn0jgj0LIUYSN4ZbZMNBkjXOCNy3xfwdeATnuGDOa+N3jHDKUBHyJnG4coI2bpMx1YoKWQtMLwe622e+vOwxiT7Jg5BNSiQ7tpy35ml38B/21GQNWO7fhpqtG1zqasSrdcal0EFTtwH94JFZFC/6yDVLdFHE54v5vI8xgqfGWnsz1SZGV+DGS7YQNb0sXn4QBBaGgI7Pu5b2DemZvVLNTwSpmn1+mpFeOw0ti9llEoZyFpR8AJt31gdzlTkti5j/mAcoHNOX52rzjFwjM3P8lJHTAZBN3172Cz2pDB6gr6AErqKW8gfEk9zNwWkyYs0fs3LdfZ76h230CkrjDVFAT35FHQMFyCihXd9d4wNupf4V4vXFQ5uZLY2aGVREykxLjGLfPjjtdUks/PP+mOIuvlyFvTsBXbx9fM5y4yRv8qtlV+Kgq0BDyI81obueYtJrlm5P2piUpsnTL+U8PuGuxVJRR4/UmLYz4qvTotHe0PSv6t0j0kDO6wpqgAu+IKy2dTn0VgS+D79EPGehXbQhRIIX1QX9h3CNW/zuIpY16cZfblwPQI
+  template:
+    metadata:
+      creationTimestamp: null
+      name: vscode-password
+      namespace: homeassistant
+    type: Opaque

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: homeassistant-ingress
+  namespace: homeassistant
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: home.jarvis-home.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: homeassistant-svc
+                port:
+                  number: 8123
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - home.jarvis-home.dev
+      secretName: homeassistant-tls

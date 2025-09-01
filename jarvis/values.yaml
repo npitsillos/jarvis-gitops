@@ -43,3 +43,15 @@ applications:
       - repoURL: https://github.com/npitsillos/jarvis-gitops
         targetRevision: HEAD
         path: longhorn
+  - name: homeassistant
+    namespace: homeassistant
+    project: default
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    targetRevision: HEAD
+    path: homeassistant
+  - name: vscode
+    namespace: homeassistant
+    project: default
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    targetRevision: HEAD
+    path: vscode-server
