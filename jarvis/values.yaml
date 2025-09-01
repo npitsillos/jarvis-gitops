@@ -30,7 +30,11 @@ applications:
         releaseName: nfd
   - name: longhorn
     namespace: longhorn-system
-    repoURL: https://github.com/npitsillos/jarvis-gitops
-    path: longhorn
+    repoURL: https://charts.longhorn.io
+    chart: longhorn
     project: default
-    targetRevision: HEAD
+    targetRevision: 1.9.1
+    tool:
+      helm:
+        releaseName: longhorn
+    extraResources: longhorn
