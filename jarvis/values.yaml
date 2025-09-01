@@ -55,3 +55,9 @@ applications:
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: vscode-server
+  - name: matter
+    namespace: homeassistant
+    project: default
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    targetRevision: HEAD
+    path: matter
