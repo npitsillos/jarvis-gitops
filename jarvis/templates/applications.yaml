@@ -12,6 +12,12 @@ spec:
     namespace: {{ .namespace | default .name | quote }}
     server: {{ $config.spec.destination.server | quote }}
   project: {{ .project }}
+  {{- if .sources }}
+  sources:
+    {{- with .sources }}
+    {{-  . | toYaml | nindent 4 }}
+    {{- end }}
+  {{- else }}
   source:
   {{- if .tool }}
     {{- with .tool }}
@@ -25,11 +31,6 @@ spec:
   {{- end }}
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
-  {{- if .extraResources }}
-  sources:
-    - repoURL: {{ $config.spec.source.repoURL }}
-      targetRevision: {{ $config.spec.source.targetRevision }}
-      path: {{ .extraResources }}
   {{- end }}
   syncPolicy:
     syncOptions:
