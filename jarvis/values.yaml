@@ -30,14 +30,17 @@ applications:
         releaseName: nfd
   - name: longhorn
     namespace: longhorn-system
-    repoURL: https://charts.longhorn.io
-    chart: longhorn
     project: default
-    targetRevision: 1.9.1
-    tool:
-      helm:
-        releaseName: longhorn
-        values: |
-          preUpgradeChecker:
-            jobEnabled: false
-    extraResources: longhorn
+    sources:
+      - repoURL: https://charts.longhorn.io
+        targetRevision: 1.9.1
+        chart: longhorn
+        tool:
+          helm:
+            releaseName: longhorn
+            values: |
+              preUpgradeChecker:
+                jobEnabled: false
+      - repoURL: https://github.com/npitsillos/jarvis-gitops
+        targetRevision: HEAD
+        path: longhorn
