@@ -26,10 +26,10 @@ spec:
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
   {{- if .extraResources }}
-    sources:
-      - repoURL: {{ $config.spec.source.repoURL }}
-        targetRevision: {{ $config.spec.source.targetRevision }}
-        path: {{ .extraResources }}
+  sources:
+    - repoURL: {{ $config.spec.source.repoURL }}
+      targetRevision: {{ $config.spec.source.targetRevision }}
+      path: {{ .extraResources }}
   {{- end }}
   syncPolicy:
     syncOptions:
