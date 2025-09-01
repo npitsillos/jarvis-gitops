@@ -35,12 +35,11 @@ applications:
       - repoURL: https://charts.longhorn.io
         targetRevision: 1.9.1
         chart: longhorn
-        tool:
-          helm:
-            releaseName: longhorn
-            values: |
-              preUpgradeChecker:
-                jobEnabled: false
+        helm:
+          releaseName: longhorn
+          values: |
+            preUpgradeChecker:
+              jobEnabled: false
       - repoURL: https://github.com/npitsillos/jarvis-gitops
         targetRevision: HEAD
         path: longhorn
