@@ -37,4 +37,7 @@ applications:
     tool:
       helm:
         releaseName: longhorn
+        values: |
+          preUpgradeChecker:
+            jobEnabled: false
     extraResources: longhorn
