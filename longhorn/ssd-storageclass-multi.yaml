@@ -1,0 +1,18 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: 'false'
+  name: longhorn-rwx
+parameters:
+  dataLocality: disabled
+  fromBackup: ''
+  fsType: 'ext4'
+  numberOfReplicas: '3'
+  staleReplicaTimeout: '30'
+  nfsOptions: 'vers=4.1,noresvport,softerr,timeo=600,retrans=5'
+  diskSelector: 'ssd'
+provisioner: driver.longhorn.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true

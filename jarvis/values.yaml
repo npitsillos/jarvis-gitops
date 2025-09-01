@@ -28,3 +28,9 @@ applications:
     tool:
       helm:
         releaseName: nfd
+  - name: longhorn
+    namespace: longhorn-system
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    path: longhorn
+    project: default
+    targetRevision: HEAD
