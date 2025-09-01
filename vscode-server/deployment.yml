@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vscode-server
+  name: vscode-server
+  namespace: homeassistant
+spec:
+  selector:
+    matchLabels:
+      app: vscode-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vscode-server
+    spec:
+      volumes:
+        - name: vscode-tls
+          secret:
+            secretName: vscode-tls
+        - name: homeassistant-pv-config
+          persistentVolumeClaim:
+            claimName: homeassistant-config-pvc
+      containers:
+        - image: codercom/code-server:latest
+          imagePullPolicy: Always
+          name: code-server
+          command:
+            [
+              '/usr/bin/entrypoint.sh',
+              '--bind-addr',
+              '0.0.0.0:8080',
+              '.',
+              '--cert',
+              '/home/coder/cert/tls.crt',
+              '--cert-key',
+              '/home/coder/cert/tls.key',
+            ]
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: vscode-password
+          volumeMounts:
+            - name: vscode-tls
+              readOnly: true
+              mountPath: '/home/coder/cert'
+            - mountPath: /home/homeassistant
+              name: homeassistant-pv-config
