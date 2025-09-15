@@ -19,12 +19,15 @@ spec:
     spec:
       hostNetwork: true
       containers:
-          - image: ghcr.io/home-assistant-libs/python-matter-server:7.0.1
-            imagePullPolicy: IfNotPresent
-            name: matter-server
-            volumeMounts:
-            - mountPath: /data
-              name: matter-server-pv-config
+        - image: ghcr.io/home-assistant-libs/python-matter-server:7.0.1
+          imagePullPolicy: IfNotPresent
+          name: matter-server
+          volumeMounts:
+          - mountPath: /data
+            name: matter-server-pv-config
+          env:
+          - name: CHIP_DEVICE_CONFIG_INTERFACE
+            value: "eth0"
       restartPolicy: Always
       volumes:
         - name: matter-server-pv-config
