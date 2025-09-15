@@ -18,6 +18,20 @@ spec:
         app: homeassistant
     spec:
       hostNetwork: true
+      securityContext:
+        sysctls:
+        - name: net.ipv6.conf.eth0.accept_ra
+          value: "2"
+        - name: net.ipv6.conf.eth0.accept_ra_rt_info_max_plen
+          value: "64"
+        - name: net.ipv6.conf.eth0.forwarding
+          value: "1"
+        - name: net.ipv6.conf.net1.accept_ra
+          value: "2"
+        - name: net.ipv6.conf.net1.accept_ra_rt_info_max_plen
+          value: "64"
+        - name: net.ipv6.conf.net1.forwarding
+          value: "1"
       containers:
         - image: ghcr.io/home-assistant-libs/python-matter-server:stable
           imagePullPolicy: IfNotPresent
