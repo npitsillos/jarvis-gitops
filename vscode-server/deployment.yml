@@ -18,9 +18,6 @@ spec:
       securityContext:
         fsGroup: 1000
       volumes:
-        - name: vscode-tls
-          secret:
-            secretName: vscode-tls
         - name: homeassistant-pv-config
           persistentVolumeClaim:
             claimName: homeassistant-config-pvc
@@ -37,10 +34,6 @@ spec:
               '--bind-addr',
               '0.0.0.0:8080',
               '.',
-              '--cert',
-              '/home/coder/cert/tls.crt',
-              '--cert-key',
-              '/home/coder/cert/tls.key',
             ]
           env:
             - name: PASSWORD
@@ -49,8 +42,5 @@ spec:
                   key: password
                   name: vscode-password
           volumeMounts:
-            - name: vscode-tls
-              readOnly: true
-              mountPath: '/home/coder/cert'
             - mountPath: /home/homeassistant
               name: homeassistant-pv-config

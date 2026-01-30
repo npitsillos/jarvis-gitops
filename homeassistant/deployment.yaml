@@ -37,9 +37,6 @@ spec:
               name: homeassistant-pv-config
             - mountPath: /dev/ttyUSB0
               name: zigbee-dongle
-            - mountPath: "/home/cert"
-              name: homeassistant-tls
-              readOnly: true
       restartPolicy: Always
       volumes:
         - name: homeassistant-pv-config
@@ -48,6 +45,3 @@ spec:
         - name: zigbee-dongle
           hostPath:
             path: /dev/ttyUSB0
-        - name: homeassistant-tls
-          secret:
-            secretName: homeassistant-tls
