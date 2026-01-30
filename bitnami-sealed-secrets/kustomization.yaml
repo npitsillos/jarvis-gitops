@@ -4,9 +4,11 @@ kind: Kustomization
 helmCharts:
   - name: sealed-secrets
     repo: https://bitnami-labs.github.io/sealed-secrets
-    version: 2.17.4
+    version: 2.18.0
     releaseName: sealed-secrets
     namespace: kube-system
+    valuesInline:
+      installCRDs: true
 
 generators:
   - ksops-generator.yaml

@@ -13,12 +13,14 @@ applications:
     targetRevision: HEAD
     path: argocd
     project: default
+    wave: -1
   - name: bitnami-sealed-secrets
     namespace: kube-system
     repoURL: https://github.com/npitsillos/jarvis-gitops
     path: bitnami-sealed-secrets
     project: default
     targetRevision: HEAD
+    wave: 0
   - name: nfd
     namespace: nfd
     repoURL: https://kubernetes-sigs.github.io/node-feature-discovery/charts
@@ -28,6 +30,7 @@ applications:
     tool:
       helm:
         releaseName: nfd
+    wave: 0
   - name: longhorn
     namespace: longhorn-system
     project: default
@@ -43,27 +46,32 @@ applications:
       - repoURL: https://github.com/npitsillos/jarvis-gitops
         targetRevision: HEAD
         path: longhorn
+    wave: 5
   - name: homeassistant
     namespace: homeassistant
     project: default
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: homeassistant
+    wave: 10
   - name: vscode
     namespace: homeassistant
     project: default
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: vscode-server
+    wave: 10
   - name: matter
     namespace: homeassistant
     project: default
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: matter
+    wave: 10
   - name: gateway
     namespace: default
     project: default
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: gateway
+    wave: 10
