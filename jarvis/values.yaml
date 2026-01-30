@@ -74,4 +74,4 @@ applications:
     repoURL: https://github.com/npitsillos/jarvis-gitops
     targetRevision: HEAD
     path: gateway
-    wave: 10
+    wave: -1
