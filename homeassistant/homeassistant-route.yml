@@ -16,4 +16,4 @@ spec:
             value: /
       backendRefs:
         - name: homeassistant-svc
-          port: 80
+          port: 8123
