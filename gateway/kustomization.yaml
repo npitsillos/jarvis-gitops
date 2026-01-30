@@ -11,5 +11,4 @@ patches:
       version: v1
       kind: Gateway
       name: http-gateway
-      namespace: default
     path: gateway-patch.yaml
