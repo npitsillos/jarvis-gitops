@@ -9,4 +9,4 @@ spec:
         - name: argocd-application-controller
           args:
             - /usr/local/bin/argocd-application-controller
-            - --dex-server-strict-tls
+            - --repo-server-strict-tls
