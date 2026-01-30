@@ -6,9 +6,4 @@ namespace: default
 resources: []
 
 patches:
-  - target:
-      group: gateway.networking.k8s.io
-      version: v1
-      kind: Gateway
-      name: http-gateway
-    path: gateway-patch.yaml
+  - path: gateway-patch.yaml
