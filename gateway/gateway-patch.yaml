@@ -1,0 +1,41 @@
+spec:
+  listeners:
+  - allowedRoutes:
+    namespaces:
+      from: All
+    hostname: home.jarvis-home.dev
+    name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: http-gateway-cert
+      mode: Terminate
+  - allowedRoutes:
+    namespaces:
+      from: All
+    hostname: code.jarvis-home.dev
+    name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: http-gateway-cert
+      mode: Terminate
+  - allowedRoutes:
+    namespaces:
+      from: All
+    hostname: longhorn.jarvis-home.dev
+    name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: http-gateway-cert
+      mode: Terminate
