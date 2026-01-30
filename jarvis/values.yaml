@@ -33,7 +33,7 @@ applications:
     project: default
     sources:
       - repoURL: https://charts.longhorn.io
-        targetRevision: 1.9.1
+        targetRevision: 1.11.0
         chart: longhorn
         helm:
           releaseName: longhorn
