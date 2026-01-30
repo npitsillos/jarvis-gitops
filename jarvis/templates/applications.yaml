@@ -33,6 +33,10 @@ spec:
   {{- end }}
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision }}
+  {{- if .recurse }}
+    directory:
+      recurse: true
+  {{- end }}
   {{- end }}
   syncPolicy:
     syncOptions:
