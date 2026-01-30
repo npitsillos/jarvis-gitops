@@ -19,7 +19,7 @@ spec:
       namespaces:
         from: All
     hostname: argocd.jarvis-home.dev
-    name: https
+    name: argocd
     port: 443
     protocol: HTTPS
     tls:
@@ -32,7 +32,7 @@ spec:
       namespaces:
         from: All
     hostname: home.jarvis-home.dev
-    name: https
+    name: home
     port: 443
     protocol: HTTPS
     tls:
@@ -45,7 +45,7 @@ spec:
       namespaces:
         from: All
     hostname: code.jarvis-home.dev
-    name: https
+    name: code
     port: 443
     protocol: HTTPS
     tls:
@@ -58,7 +58,7 @@ spec:
       namespaces:
         from: All
     hostname: longhorn.jarvis-home.dev
-    name: https
+    name: longhorn
     port: 443
     protocol: HTTPS
     tls:
