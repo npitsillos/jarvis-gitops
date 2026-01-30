@@ -1,10 +1,33 @@
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: Gateway
 metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
   name: http-gateway
   namespace: default
 spec:
+  addresses:
+  - type: IPAddress
+    value: 100.93.246.73
+  - type: IPAddress
+    value: 100.114.131.83
+  - type: IPAddress
+    value: 100.126.120.42
+  gatewayClassName: cilium
   listeners:
+  - allowedRoutes:
+      namespaces:
+        from: All
+    hostname: argocd.jarvis-home.dev
+    name: https
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: http-gateway-cert
+      mode: Terminate
   - allowedRoutes:
       namespaces:
         from: All
