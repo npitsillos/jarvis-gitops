@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-pvc
+  namespace: immich
+spec:
+  storageClassName: longhorn-ssd
+  resources:
+    requests:
+      storage: 50Gi
