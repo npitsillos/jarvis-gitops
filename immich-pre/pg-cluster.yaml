@@ -9,7 +9,7 @@ spec:
   storage:
     size: 1Gi
 
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:18-1.1.0
 
   postgresql:
     shared_preload_libraries:
