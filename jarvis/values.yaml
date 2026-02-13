@@ -75,3 +75,42 @@ applications:
     targetRevision: HEAD
     path: gateway
     wave: -1
+  - name: cloudnative-pg
+    namespace: cnpg-system
+    project: default
+    sources:
+      - repoURL: https://cloudnative-pg.github.io/charts
+        targetRevision: 0.27.1
+        chart: cloudnative-pg
+        helm:
+          releaseName: cnpg
+    wave: 5
+  - name: immich-pre
+    namespace: immich
+    project: default
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    targetRevision: HEAD
+    path: immich-pre
+    wave: 5
+  - name: immich
+    namespace: immich
+    project: default
+    wave: 10
+    sources:
+      - repoURL: oci://ghcr.io/immich-app/immich-charts/immich
+        targetRevision: 0.10.3
+        chart: immich
+        helm:
+          releaseName: immich
+          values: |
+            image:
+              tag: v2.0.0
+            immich:
+              persistence:
+                library:
+                  existingClaim: immich-pvc
+            valkey:
+              enabled: true
+      - repoURL: https://github.com/npitsillos/jarvis-gitops
+        targetRevision: HEAD
+        path: immich
