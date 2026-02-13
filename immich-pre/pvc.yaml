@@ -5,6 +5,8 @@ metadata:
   namespace: immich
 spec:
   storageClassName: longhorn-ssd
+  accessModes:
+    - ReadWriteOnce
   resources:
     requests:
       storage: 50Gi
