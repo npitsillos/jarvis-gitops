@@ -67,3 +67,16 @@ spec:
         kind: Secret
         name: http-gateway-cert
       mode: Terminate
+  - allowedRoutes:
+      namespaces:
+        from: All
+    hostname: immich.jarvis-home.dev
+    name: immich
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: http-gateway-cert
+      mode: Terminate
