@@ -8,11 +8,7 @@ metadata:
 spec:
   addresses:
   - type: IPAddress
-    value: 100.93.246.73
-  - type: IPAddress
-    value: 100.114.131.83
-  - type: IPAddress
-    value: 100.126.120.42
+    value: 100.81.60.103
   gatewayClassName: cilium
   listeners:
   - allowedRoutes:

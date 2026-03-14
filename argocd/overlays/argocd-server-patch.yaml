@@ -9,6 +9,4 @@ spec:
         - name: argocd-server
           args:
             - /usr/local/bin/argocd-server
-            - --repo-server-strict-tls
-            - --dex-server-strict-tls
             - --insecure
