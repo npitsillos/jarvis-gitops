@@ -14,6 +14,13 @@ applications:
     path: argocd
     project: default
     wave: -1
+  - name: tailscale
+    namespace: tailscale
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    targetRevision: HEAD
+    path: tailscale
+    project: default
+    wave: 0
   - name: bitnami-sealed-secrets
     namespace: kube-system
     repoURL: https://github.com/npitsillos/jarvis-gitops

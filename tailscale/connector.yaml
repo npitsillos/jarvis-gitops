@@ -1,0 +1,8 @@
+apiVersion: tailscale.com/v1alpha1
+kind: Connector
+metadata:
+  name: jarvis-subnet-router
+spec:
+  subnetRouter:
+    advertiseRoutes:
+      - "192.168.10.0/24"

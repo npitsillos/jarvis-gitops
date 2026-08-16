@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: operator-oauth
+    namespace: tailscale
+stringData:
+    client_id: ENC[AES256_GCM,data:Z/9wbYbcDOTC0H/KFmDn5XQ=,iv:fkn00OJpBbFPZd69gZxuFhUGKJjh1khLq15spLTJNlM=,tag:gnFCYIvSqtMTUsOYQ9Hnog==,type:str]
+    client_secret: ENC[AES256_GCM,data:RWED9xtdGlwm6mZWEK6g5FxBaBkkprroBHYjZy5a466XqDFTZVautpkvDsEh3hsC+oMNkBNQt2DUzfcG7r/4,iv:pNJzXU9qmhEbeVEWR6Hpy1bSAG9tzRg2+FnTwaqmZGs=,tag:9H2H2qo100lJyebNTUiQtw==,type:str]
+sops:
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-08-16T10:27:24Z"
+    mac: ENC[AES256_GCM,data:wlQH1hfce5Oj2ILS0y/hxa1hXI8i6lIX+oIO3Jv3TjmzN6nTu7DbGAApolA5YbHWtysGrNvxHnwV/Oc2XQdhQxtMxMTngfixYcR40yHH/cbmW8H6MY7vD6w/Ex25RfBNjyvkuGUNNeQCfLJVuB3pVkWUhK1DhpttYiQ6qHjl7Ng=,iv:8VdYoGTmyIBqOuGgFAyD1jULF83AsOHn2Agc27/J9FY=,tag:qO1L66HSxzipzxkqjlFSkA==,type:str]
+    pgp:
+        - created_at: "2026-08-16T10:27:24Z"
+          enc: |-
+            -----BEGIN PGP MESSAGE-----
+
+            hF4DWUTUg6PcIHQSAQdAf21h2PweB7GAlpfdKYHgSkwf80s2iS8nqtMWQET8pEsw
+            MiA72yDv6l6FtTzRo8E+Uxwub+YQNs4jalK1M8fc2vNRhB5XnC7khDH9ZUe79CLk
+            0l4BSlgCembjxC7Y7rzR4RkXCMmSQX5nxkFo8ljnlhdWtjZS8jUOYS+m7C4se1pL
+            7vkZ44eUCEdgQ8nKzuljnMKp8jA+DIuRNylNlRZFJdqyJLMxa3adTg3UV90uzEvv
+            =HuoD
+            -----END PGP MESSAGE-----
+          fp: 859403B8C0B3AD6E537C4441F4EED619DF59473B
+    version: 3.13.3
