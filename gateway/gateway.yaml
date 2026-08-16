@@ -6,9 +6,6 @@ metadata:
   name: http-gateway
   namespace: default
 spec:
-  addresses:
-  - type: IPAddress
-    value: 100.81.60.103
   gatewayClassName: cilium
   listeners:
   - allowedRoutes:
