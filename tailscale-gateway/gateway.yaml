@@ -1,12 +1,12 @@
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-  name: http-gateway
-  namespace: default
+  name: tailscale-gateway
+  namespace: tailscale
 spec:
-  gatewayClassName: cilium
+  gatewayClassName: tailscale
   listeners:
   - allowedRoutes:
       namespaces:
@@ -19,7 +19,7 @@ spec:
       certificateRefs:
       - group: ""
         kind: Secret
-        name: http-gateway-cert
+        name: tailscale-gateway-cert
       mode: Terminate
   - allowedRoutes:
       namespaces:
@@ -32,7 +32,7 @@ spec:
       certificateRefs:
       - group: ""
         kind: Secret
-        name: http-gateway-cert
+        name: tailscale-gateway-cert
       mode: Terminate
   - allowedRoutes:
       namespaces:
@@ -45,7 +45,7 @@ spec:
       certificateRefs:
       - group: ""
         kind: Secret
-        name: http-gateway-cert
+        name: tailscale-gateway-cert
       mode: Terminate
   - allowedRoutes:
       namespaces:
@@ -58,7 +58,7 @@ spec:
       certificateRefs:
       - group: ""
         kind: Secret
-        name: http-gateway-cert
+        name: tailscale-gateway-cert
       mode: Terminate
   - allowedRoutes:
       namespaces:
@@ -71,5 +71,5 @@ spec:
       certificateRefs:
       - group: ""
         kind: Secret
-        name: http-gateway-cert
+        name: tailscale-gateway-cert
       mode: Terminate

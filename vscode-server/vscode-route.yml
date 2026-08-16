@@ -7,6 +7,8 @@ spec:
   parentRefs:
     - name: http-gateway
       namespace: default
+    - name: tailscale-gateway
+      namespace: tailscale
   hostnames:
     - code.jarvis-home.dev
   rules:
