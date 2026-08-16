@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: install-ksops
           image: viaductoss/ksops:v4.5.1
-          command: ["/usr/local/bin/ksops", "install", "--with-kustomize", "/custom-tools"]
+          command: ["/usr/local/bin/ksops", "install", "/custom-tools"]
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools
@@ -42,9 +42,6 @@ spec:
             - name: XDG_CONFIG_HOME
               value: /home/argocd/.config
           volumeMounts:
-            - mountPath: /usr/local/bin/kustomize
-              name: custom-tools
-              subPath: kustomize
             - mountPath: /usr/local/bin/ksops
               name: custom-tools
               subPath: ksops
