@@ -47,6 +47,8 @@ applications:
         chart: gateway-helm
         helm:
           releaseName: eg
+    syncOptions:
+      - ServerSideApply=true
     wave: 0
   - name: tailscale-gateway
     namespace: tailscale

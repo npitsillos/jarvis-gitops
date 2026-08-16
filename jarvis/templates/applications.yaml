@@ -37,6 +37,9 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      {{- range .syncOptions }}
+      - {{ . }}
+      {{- end }}
     automated:
       prune: true
       selfHeal: true
