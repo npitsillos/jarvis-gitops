@@ -7,6 +7,10 @@ metadata:
   namespace: default
 spec:
   gatewayClassName: cilium
+  infrastructure:
+    annotations:
+      tailscale.com/expose: "true"
+      tailscale.com/hostname: "jarvis-gateway"
   listeners:
   - allowedRoutes:
       namespaces:
