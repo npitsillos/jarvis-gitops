@@ -62,13 +62,22 @@ applications:
     project: default
     sources:
       - repoURL: https://charts.longhorn.io
-        targetRevision: 1.11.0
+        targetRevision: 1.12.1
         chart: longhorn
         helm:
           releaseName: longhorn
           values: |
             preUpgradeChecker:
               jobEnabled: false
+            httproute:
+              enabled: true
+              parentRefs:
+                - name: http-gateway
+                  namespace: default
+                - name: tailscale-gateway
+                  namespace: tailscale
+              hostnames:
+                - longhorn.jarvis-home.dev
       - repoURL: https://github.com/npitsillos/jarvis-gitops
         targetRevision: HEAD
         path: longhorn
