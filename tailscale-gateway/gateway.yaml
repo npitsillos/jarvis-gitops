@@ -73,3 +73,16 @@ spec:
         kind: Secret
         name: tailscale-gateway-cert
       mode: Terminate
+  - allowedRoutes:
+      namespaces:
+        from: All
+    hostname: technitium.jarvis-home.dev
+    name: technitium
+    port: 443
+    protocol: HTTPS
+    tls:
+      certificateRefs:
+      - group: ""
+        kind: Secret
+        name: tailscale-gateway-cert
+      mode: Terminate
