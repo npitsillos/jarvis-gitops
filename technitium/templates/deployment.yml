@@ -16,6 +16,8 @@ spec:
       labels:
         app: technitium
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: jarvis
       containers:
       - name: technitium
         image: {{ .Values.image }}
