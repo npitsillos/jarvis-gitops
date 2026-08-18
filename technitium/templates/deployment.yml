@@ -61,6 +61,18 @@ spec:
         - containerPort: 67
           protocol: UDP
           name: dhcp
+        volumeMounts:
+        - name: config
+          mountPath: /etc/dns
+        - name: logs
+          mountPath: /var/log/technitium/dns
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: technitium-config-pvc
+      - name: logs
+        persistentVolumeClaim:
+          claimName: technitium-logs-pvc
       restartPolicy: Always
 ---
 
