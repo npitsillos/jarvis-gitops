@@ -36,22 +36,22 @@ spec:
           name: dns-udp
         - containerPort: 853
           protocol: TCP
-          name: dns-over-tls-tcp
+          name: dns-tls-tcp
         - containerPort: 853
           protocol: UDP
-          name: dns-over-tls-udp
+          name: dns-tls-udp
         - containerPort: 443
           protocol: UDP
-          name: dns-over-https-udp
+          name: dns-https-udp
         - containerPort: 443
           protocol: TCP
-          name: dns-over-https-tcp
+          name: dns-https-tcp
         - containerPort: 80
           protocol: TCP
-          name: dns-over-http
+          name: dns-http
         - containerPort: 8053
           protocol: TCP
-          name: dns-over-http-proxy
+          name: dns-http-proxy
         - containerPort: 5380
           protocol: TCP
           name: web
