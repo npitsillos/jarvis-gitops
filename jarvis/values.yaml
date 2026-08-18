@@ -177,3 +177,10 @@ applications:
       - repoURL: https://github.com/npitsillos/jarvis-gitops
         targetRevision: HEAD
         path: immich
+  - name: technitium
+    namespace: technitium
+    project: default
+    wave: 10
+    repoURL: https://github.com/npitsillos/jarvis-gitops
+    targetRevision: HEAD
+    path: technitium

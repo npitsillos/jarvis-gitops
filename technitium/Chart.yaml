@@ -1,0 +1,4 @@
+apiVersion: v2
+name: technitium
+version: 0.1.0
+description: Technitium custom helm chart for jarvis

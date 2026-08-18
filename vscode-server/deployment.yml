@@ -21,6 +21,13 @@ spec:
         - name: homeassistant-pv-config
           persistentVolumeClaim:
             claimName: homeassistant-config-pvc
+      initContainers:
+        - name: fix-permissions
+          image: busybox
+          command: ['sh', '-c', 'chown -R 1000:1000 /data']
+          volumeMounts:
+            - mountPath: /data
+              name: homeassistant-pv-config
       containers:
         - image: codercom/code-server:latest
           securityContext:

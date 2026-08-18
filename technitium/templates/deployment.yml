@@ -1,0 +1,66 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: technitium
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: technitium
+spec:
+  selector:
+    matchLabels:
+      app: technitium
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: technitium
+    spec:
+      containers:
+      - name: technitium
+        image: {{ .Values.image }}
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        ports:
+        - containerPort: 53
+          protocol: TCP
+          name: dns-tcp
+        - containerPort: 53
+          protocol: UDP
+          name: dns-udp
+        - containerPort: 853
+          protocol: TCP
+          name: dns-over-tls-tcp
+        - containerPort: 853
+          protocol: UDP
+          name: dns-over-tls-udp
+        - containerPort: 443
+          protocol: UDP
+          name: dns-over-https-udp
+        - containerPort: 443
+          protocol: TCP
+          name: dns-over-https-tcp
+        - containerPort: 80
+          protocol: TCP
+          name: dns-over-http
+        - containerPort: 8053
+          protocol: TCP
+          name: dns-over-http-proxy
+        - containerPort: 5380
+          protocol: TCP
+          name: web
+        - containerPort: 53443
+          protocol: TCP
+          name: api
+        - containerPort: 67
+          protocol: UDP
+          name: dhcp
+      restartPolicy: Always
+---
+
