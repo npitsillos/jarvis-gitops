@@ -88,18 +88,46 @@ spec:
 
 DNS must resolve `*.jarvis-home.dev` to the correct IP depending on whether the client is on the LAN or on Tailscale.
 
-### Current Approach: Dual A Records in Cloudflare
-Add two A records for each subdomain:
-- `argocd.jarvis-home.dev` -> `192.168.10.50` (LAN VIP)
-- `argocd.jarvis-home.dev` -> `<Tailscale IP>` (Tailscale gateway)
+### LAN Clients
+Cloudflare DNS has a wildcard A record for `*.jarvis-home.dev` pointing to the Cilium VIP (`192.168.10.50`). LAN devices use their default DNS (via the router) which resolves through Cloudflare.
 
-The client races both connections and uses whichever responds first:
-- **On LAN:** LAN VIP responds, Tailscale IP unreachable -> connects via LAN
-- **On Tailscale off-LAN:** Tailscale IP responds, LAN VIP unreachable -> connects via Tailscale
-- **On LAN + Tailscale:** Both work, fastest wins
+### Tailscale Clients: Split DNS with Technitium
+Technitium DNS Server runs in the cluster as a Helm chart (`technitium/` directory) and provides split-horizon DNS using the Split Horizon app.
 
-### Future Approach: Split DNS with Pi-hole/AdGuard
-Configure Tailscale's split DNS in the admin console to forward `jarvis-home.dev` queries to a local DNS server (Pi-hole, AdGuard) that returns the Tailscale gateway IP. This avoids the connection-racing delay of dual A records.
+**Tailscale admin console configuration:**
+- Split DNS domain: `jarvis-home.dev`
+- Nameserver: `192.168.10.100` (Technitium DNS via `externalIPs` on the `jarvis` node)
+
+**Technitium Split Horizon APP record** for `*.jarvis-home.dev`:
+```json
+{
+  "192.168.10.0/24": ["192.168.10.50"],
+  "100.64.0.0/10": ["100.122.181.96"],
+  "10.0.0.0/16": ["100.122.181.96"]
+}
+```
+
+- `192.168.10.0/24` (LAN) → Cilium VIP
+- `100.64.0.0/10` (Tailscale CGNAT range) → Tailscale gateway
+- `10.0.0.0/16` (pod network) → Tailscale gateway (needed because the subnet router pod proxies DNS queries from its pod IP, not the original Tailscale client IP)
+
+**Traffic flow:**
+```
+Phone (mobile data) -> Tailscale MagicDNS
+  -> Split DNS forwards jarvis-home.dev to 192.168.10.100
+  -> Subnet router routes to Technitium pod
+  -> Split Horizon returns 100.122.181.96 (Tailscale gateway)
+  -> Phone connects to 100.122.181.96:443
+  -> Tailscale gateway (Envoy) -> HTTPRoute -> Backend service
+```
+
+### Why `externalIPs` is Required on the Technitium DNS Service
+
+The Technitium DNS LoadBalancer service gets a Cilium VIP (`192.168.10.51`), but the Tailscale subnet router pod cannot reach Cilium VIPs (see [cilium-gateway-l2.md](cilium-gateway-l2.md) - "Limitation: Pod-to-Gateway VIP Traffic Does Not Work"). The `externalIPs: ["192.168.10.100"]` binds port 53 directly on the `jarvis` node's real IP, which the subnet router pod can reach. A `nodeSelector` pins Technitium to the `jarvis` node to ensure the externalIP remains valid.
+
+### Why the Tailscale Operator ProxyClass Cannot Fix This
+
+The Tailscale operator's `ProxyClass` CRD does not expose a `hostNetwork` field for pod customization. If it did, the subnet router pod could run on the host network and reach Cilium VIPs directly, eliminating the need for `externalIPs`.
 
 ## Hurdle 1: Why Not Just Expose the Cilium Gateway via Tailscale?
 

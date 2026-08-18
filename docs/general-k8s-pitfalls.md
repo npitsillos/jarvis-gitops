@@ -120,6 +120,22 @@ sudo mount -a
 ### Longhorn Configuration
 Longhorn needs the disk configured with an `ssd` tag pointing to `/mnt/ssd` on the jarvis node. This is done through the Longhorn UI or via a Longhorn `Node` resource.
 
+## Pod CIDR Mismatch: k3s vs Cilium
+
+### Symptom
+k3s reports `--cluster-cidr` as `10.42.0.0/16` (the default), and `node.spec.podCIDR` shows `10.42.x.x/24` per node. However, actual pod IPs are in `10.0.0.0/16` (e.g. `10.0.0.34`, `10.0.1.21`, `10.0.2.4`).
+
+### Root Cause
+Cilium replaces k3s's default CNI and uses its own IPAM. The pod CIDR configured in Cilium (`10.0.0.0/16`) overrides k3s's default (`10.42.0.0/16`). k3s's value is cosmetic — Cilium manages all pod IP allocation.
+
+### Impact
+- **Functionally**: No impact. Cilium handles all networking end-to-end.
+- **Confusion**: Components reading `node.spec.podCIDR` (e.g. `kubectl get nodes -o jsonpath`) will report the wrong range. Any configuration that depends on the pod CIDR (like the Technitium Split Horizon APP record) must use `10.0.0.0/16`, not `10.42.0.0/16`.
+- **Tailscale autoApprovers**: The ACL has `10.42.0.0/16` in `autoApprovers.routes` — this is the k3s default, not the actual pod CIDR. Update to `10.0.0.0/16` if auto-approving pod network routes.
+
+### Fix
+Not worth fixing on a running cluster — changing either Cilium's or k3s's CIDR would require restarting all pods. On a fresh cluster install, pass `--cluster-cidr=10.0.0.0/16` to k3s to match Cilium.
+
 ## Version Upgrade Checklist
 
 When upgrading any component, check these items:
