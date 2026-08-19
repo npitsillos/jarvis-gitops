@@ -6,10 +6,16 @@ Cilium serves as both the CNI and the Gateway API implementation for LAN traffic
 
 ## Helm Values (Critical Settings)
 
+These are the complete Cilium Helm values used in this setup:
+
 ```yaml
 kubeProxyReplacement: true
+k8sServiceHost: 192.168.10.100
+k8sServicePort: 6443
 gatewayAPI:
   enabled: true
+  hostNetwork:
+    enabled: false
 l2announcements:
   enabled: true
 l7Proxy: true
@@ -25,10 +31,18 @@ envoy:
         - SYS_ADMIN
         - NET_BIND_SERVICE    # Required for binding to port 443
       keepCapNetBindService: true
+extraConfig:
+  proxy-use-original-source-address: "true"
+proxy:
+  useOriginalSourceAddress: true
+operator:
+  replicas: 1
 socketLB:
-  enabled: true
-  hostNamespaceOnly: false    # Extends socket LB to pod namespaces
+  enabled: false
+  hostNamespaceOnly: false
 ```
+
+**Note on `proxy-use-original-source-address`:** This must be `"true"` for this L2 announcement setup. Setting it to `"false"` (as suggested in [cilium/cilium#48045](https://github.com/cilium/cilium/issues/48045)) breaks same-node Envoy-to-pod connectivity — Envoy on the VIP lease holder node returns 503 for all services running on that same node, while cross-node services continue to work.
 
 ## Hurdle 1: BPF TPROXY - External Traffic Silently Dropped
 
