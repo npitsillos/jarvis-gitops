@@ -22,7 +22,7 @@ spec:
         feature.node.kubernetes.io/usb-ff_10c4_ea60.present: "true"
       containers:
         - image: ghcr.io/home-assistant-libs/python-matter-server:stable
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: matter-server
           volumeMounts:
           - mountPath: /data
