@@ -25,7 +25,7 @@ spec:
               value: "1"
           securityContext:
             privileged: true
-          image: homeassistant/home-assistant
+          image: homeassistant/home-assistant:latest
           imagePullPolicy: IfNotPresent
           name: homeassistant
           ports:
